@@ -3,9 +3,9 @@
 # jinja templates are allowed, only os.environ is available for
 # realizing the templated variables
 user:
-  ACCOUNT: {{ 'HPC_ACCOUNT' | getenv }}
-  HOMEDIR: 'default'
-  STMP: 'default'
-  PTMP: 'default'
+  ACCOUNT: "rcm1" #{{ 'HPC_ACCOUNT' | getenv }}
+  HOMEDIR: '/scratch3/BMC/rcm2/mbruckner/catchem_c'
+  STMP: '/scratch3/BMC/rcm2/mbruckner/catchem_c'
+  PTMP: '/scratch3/BMC/rcm2/mbruckner/catchem_c'
   NOSCRUB: 'default'
   HPSS_PROJECT: 'default'

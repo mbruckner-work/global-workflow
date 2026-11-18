@@ -40,7 +40,7 @@ diagnostics:
     format: "netcdf" #only format supported now
     compress_lev: 0 #compress NC file; 0 for no compression, 1-9 for increasing levels of compression (and run time)
     latlon_output: true #stitch cubed-sphere tiles into a single lat/lon file (only applies when tile count > 1)
-    diag_list: [so2, so4, seas1, seas2, seas3, seas4, seas5, bc1, bc2, oc1, oc2, dust1, dust2, dust3, dust4, dust5]  #list of species to output; empty list for all species
+    diag_list: []  #list of species to output; empty list for all species
   collection:
     enabled: true
     buffer_size: 1000
@@ -70,6 +70,7 @@ run_phases:
       - drydep
       - so4chem
       - wetdep
+      - gaschem
 
 #============================================================================
 # Settings for CATChem processes
@@ -276,7 +277,7 @@ processes:
       diagnostics: true
       diag_list: [NO, SO2, POC, PSO4]
     gmi:
-      activate: true
+      activate: false
       scale_factor: 1.0
       source_file: "ExtData/PIESA/L127/A2_ACCMIP_gmic_MERRA_oh_h2o2_no3.x144_y91_z127_t14.%y4.nc"
       format: "netcdf"
@@ -446,3 +447,9 @@ processes:
     scheme: 'gocart'
     gocart:
       time_days_hydrophobic_to_hydrophilic: 2.5  # Rate of conversion of hydrophobic to hydrophilic [days]
+  gaschem:
+    activate: true
+    diagnostics: true
+    diag_species: [so2, o3, oh, no, co, hno3]
+    config_file: "/scratch3/BMC/rcm2/mbruckner/catchem_c/global-workflow/parm/chem/catchem/micm_config.yaml"      
+    negative_concentration_policy: clamp

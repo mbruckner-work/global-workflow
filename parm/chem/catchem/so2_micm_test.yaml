@@ -1,0 +1,20 @@
+version: "1.1.0"
+name: simple_so2
+species:
+  files:
+    - /scratch3/BMC/rcm2/mbruckner/catchem_c/global-workflow/parm/chem/catchem/CATChem_species.yml
+reactions:
+  - type: FIRST_ORDER_LOSS
+    name: so2-loss
+    scaling factor: 0.02
+    gas phase: gas
+    reactants:
+      - species name: so2
+phases:
+  - name: gas
+    species:
+      - so2
+      - h2o2
+      - oh
+      - no3
+      - dms
